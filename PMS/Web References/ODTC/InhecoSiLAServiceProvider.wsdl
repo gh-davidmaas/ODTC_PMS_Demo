@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:tns="http://sila.coop" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" name="InhecoSiLAServiceProvider" targetNamespace="http://sila.coop" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>ODTC WSDL Version v1.5 2014-12-02</wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://sila.coop">
+      <xsd:element name="Abort">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AbortResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="AbortResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="SiLAReturnValue">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="returnCode" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="message" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="duration" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="deviceClass" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="SiLAReturnValue" nillable="true" type="tns:SiLAReturnValue" />
+      <xsd:element name="DoContinue">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DoContinueResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="DoContinueResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetDeviceIdentification">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetDeviceIdentificationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="GetDeviceIdentificationResult" type="tns:SiLAReturnValue" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="deviceDescription" type="tns:SiLA_DeviceIdentification" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="SiLA_DeviceIdentification">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Wsdl" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SiLAInterfaceVersion" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="SiLADeviceClass" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SiLADeviceClassVersion" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SiLASubDeviceClass" nillable="true" type="tns:ArrayOfint" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DeviceManufacturer" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DeviceName" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DeviceSerialNumber" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DeviceFirmwareVersion" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="SiLA_DeviceIdentification" nillable="true" type="tns:SiLA_DeviceIdentification" />
+      <xsd:complexType name="ArrayOfint">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="int" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" />
+      <xsd:element name="GetStatus">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetStatusResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="GetStatusResult" type="tns:SiLAReturnValue" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="deviceId" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="state" type="tns:State" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="subStates" nillable="true" type="tns:ArrayOfCommandDescription" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="locked" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="PMSId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="currentTime" type="xsd:dateTime" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="State">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="startup" />
+          <xsd:enumeration value="resetting" />
+          <xsd:enumeration value="standby" />
+          <xsd:enumeration value="initializing" />
+          <xsd:enumeration value="idle" />
+          <xsd:enumeration value="busy" />
+          <xsd:enumeration value="paused" />
+          <xsd:enumeration value="errorHandling" />
+          <xsd:enumeration value="inError" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="State" nillable="true" type="tns:State" />
+      <xsd:complexType name="ArrayOfCommandDescription">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="CommandDescription" nillable="true" type="tns:CommandDescription" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ArrayOfCommandDescription" nillable="true" type="tns:ArrayOfCommandDescription" />
+      <xsd:complexType name="CommandDescription">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="commandName" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="queuePosition" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="startedAt" nillable="true" type="xsd:dateTime" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="currentState" nillable="true" type="tns:SubState" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="dataWaiting" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="CommandDescription" nillable="true" type="tns:CommandDescription" />
+      <xsd:simpleType name="SubState">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="asynchPaused" />
+          <xsd:enumeration value="pauseRequested" />
+          <xsd:enumeration value="processing" />
+          <xsd:enumeration value="responseWaiting" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="SubState" nillable="true" type="tns:SubState" />
+      <xsd:element name="Initialize">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InitializeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="InitializeResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="LockDevice">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="lockId" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockTimeout" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="eventReceiverURI" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="PMSId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="LockDeviceResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="LockDeviceResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Pause">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PauseResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="PauseResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="Reset">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="deviceId" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="eventReceiverURI" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="PMSId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="errorHandlingTimeout" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="simulationMode" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ResetResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ResetResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UnlockDevice">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="lockId" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UnlockDeviceResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="UnlockDeviceResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OpenDoor">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OpenDoorResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="OpenDoorResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CloseDoor">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CloseDoorResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="CloseDoorResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExecuteMethod">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="methodName" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="priority" nillable="true" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ExecuteMethodResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ExecuteMethodResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="StopMethod">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="StopMethodResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="StopMethodResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PrepareForInput">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="position" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PrepareForInputResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="PrepareForInputResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PrepareForOutput">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="position" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PrepareForOutputResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="PrepareForOutputResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SetConfiguration">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="configLevel" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="password" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="configXML" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SetConfigurationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="SetConfigurationResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetConfiguration">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="configLevel" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="password" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetConfigurationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="GetConfigurationResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SetParameters">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="paramsXML" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SetParametersResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="SetParametersResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetParameters">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetParametersResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="GetParametersResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadActualTemperature">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ReadActualTemperatureResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="ReadActualTemperatureResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetLastData">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="requestId" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="lockId" nillable="true" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetLastDataResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="GetLastDataResult" type="tns:SiLAReturnValue" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="InhecoSiLAServiceProvider_Abort_InputMessage">
+    <wsdl:part name="parameters" element="tns:Abort" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_Abort_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AbortResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_DoContinue_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoContinue" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_DoContinue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoContinueResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_GetDeviceIdentification_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeviceIdentification" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_GetDeviceIdentification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeviceIdentificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_GetStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatus" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_GetStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_Initialize_InputMessage">
+    <wsdl:part name="parameters" element="tns:Initialize" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_Initialize_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitializeResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_LockDevice_InputMessage">
+    <wsdl:part name="parameters" element="tns:LockDevice" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_LockDevice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LockDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_Pause_InputMessage">
+    <wsdl:part name="parameters" element="tns:Pause" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_Pause_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PauseResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_Reset_InputMessage">
+    <wsdl:part name="parameters" element="tns:Reset" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_Reset_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_UnlockDevice_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnlockDevice" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_UnlockDevice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnlockDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_OpenDoor_InputMessage">
+    <wsdl:part name="parameters" element="tns:OpenDoor" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_OpenDoor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OpenDoorResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_CloseDoor_InputMessage">
+    <wsdl:part name="parameters" element="tns:CloseDoor" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_CloseDoor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseDoorResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_ExecuteMethod_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteMethod" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_ExecuteMethod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExecuteMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_StopMethod_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopMethod" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_StopMethod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopMethodResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_PrepareForInput_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrepareForInput" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_PrepareForInput_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrepareForInputResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_PrepareForOutput_InputMessage">
+    <wsdl:part name="parameters" element="tns:PrepareForOutput" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_PrepareForOutput_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PrepareForOutputResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_SetConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_SetConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_GetConfiguration_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfiguration" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_GetConfiguration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetConfigurationResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_SetParameters_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetParameters" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_SetParameters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_GetParameters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetParameters" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_GetParameters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_ReadActualTemperature_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReadActualTemperature" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_ReadActualTemperature_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReadActualTemperatureResponse" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_GetLastData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastData" />
+  </wsdl:message>
+  <wsdl:message name="InhecoSiLAServiceProvider_GetLastData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="InhecoSiLAServiceProvider">
+    <wsdl:operation name="Abort">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT0S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;This command aborts all running and pending asynchronous commands of the device.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;This parameter is the identification of the PMS which has locked the device.&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/Abort" message="tns:InhecoSiLAServiceProvider_Abort_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/AbortResponse" message="tns:InhecoSiLAServiceProvider_Abort_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoContinue">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT0S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;This command enables the continuation of the process for a paused system.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;This parameter is the identification of the PMS which has locked the device.&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/DoContinue" message="tns:InhecoSiLAServiceProvider_DoContinue_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/DoContinueResponse" message="tns:InhecoSiLAServiceProvider_DoContinue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceIdentification">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT1S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;This command reports on details of the device.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;This parameter is the identification of the PMS which has locked the device.&lt;/Parameter&gt;&lt;Parameter name="deviceDescription" &gt;The Device Identification. It is a SOAP complex type.&lt;/Parameter&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/GetDeviceIdentification" message="tns:InhecoSiLAServiceProvider_GetDeviceIdentification_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/GetDeviceidentificationResponse" message="tns:InhecoSiLAServiceProvider_GetDeviceIdentification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT1S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;This command reports the status of the device.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="deviceId" &gt;The identification the device returns to identify itself at the PMS.&lt;/Parameter&gt;&lt;Parameter name="state" &gt;Status of the device&lt;/Parameter&gt;&lt;Parameter name="subStates" &gt;Substate of the above state.&lt;/Parameter&gt;&lt;Parameter name="locked" &gt;Lock state of the device (locked=true, unlocked = false)&lt;/Parameter&gt;&lt;Parameter name="PMSId" &gt;Identification of the PMS that locked the device.&lt;/Parameter&gt;&lt;Parameter name="currentTime" &gt;Time of reporting status information.&lt;/Parameter&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/GetStatus" message="tns:InhecoSiLAServiceProvider_GetStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/GetStatusResponse" message="tns:InhecoSiLAServiceProvider_GetStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Initialize">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT30S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;This command initializes the device.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;This parameter is the identification of the PMS which has locked the device.&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/Initialize" message="tns:InhecoSiLAServiceProvider_Initialize_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/InitializeResponse" message="tns:InhecoSiLAServiceProvider_Initialize_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LockDevice">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT1S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;This command locks the device for exclusive use.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;This parameter hands over the lock identification of the PMS to the device. The device will only accept further commands, if they use the same lockId.&lt;/Parameter&gt;&lt;Parameter name="lockTimeout"  xsi:type="Duration" &gt;If this parameter is omitted, no timeout will be set. Otherwise the device will unlock itself if it does not receive any commands within the timeout period.&lt;/Parameter&gt;&lt;Parameter name="eventReceiverURI" &gt;Service URI of the Service Consumer's event Receiver.&lt;/Parameter&gt;&lt;Parameter name="PMSId" &gt;Id of the PMS in order to identify the PMS that locked a device.&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/LockDevice" message="tns:InhecoSiLAServiceProvider_LockDevice_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/LockDeviceResponse" message="tns:InhecoSiLAServiceProvider_LockDevice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT0S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;This command pauses the process/workflow in order to enable user intervention.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;This parameter is the identification of the PMS which has locked the device.&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/Pause" message="tns:InhecoSiLAServiceProvider_Pause_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/PauseResponse" message="tns:InhecoSiLAServiceProvider_Pause_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Reset">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT5S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;This command is used to reset the Service Provider at any time from any state.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;This parameter is the identification of the PMS which has locked the device.&lt;/Parameter&gt;&lt;Parameter name="deviceId" &gt;The identification the device returns to identify itself at the PMS.&lt;/Parameter&gt;&lt;Parameter name="eventReceiverURI" &gt;Connection information of the Service Consumers event Receiver.&lt;/Parameter&gt;&lt;Parameter name="PMSId" &gt;Id of the PMS in order to identify the PMS that locked a device.&lt;/Parameter&gt;&lt;Parameter name="errorHandlingTimeout"  xsi:type="Duration" &gt;Timeout until an errorhandling state is changed into an error state.&lt;/Parameter&gt;&lt;Parameter name="simulationMode" &gt;Selects simulation mode.&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/Reset" message="tns:InhecoSiLAServiceProvider_Reset_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/ResetResponse" message="tns:InhecoSiLAServiceProvider_Reset_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnlockDevice">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT1S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;This command is used to unlock the device.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;This parameter is the identification of the PMS which has locked the device.&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/UnlockDevice" message="tns:InhecoSiLAServiceProvider_UnlockDevice_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/UnlockDeviceResponse" message="tns:InhecoSiLAServiceProvider_UnlockDevice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenDoor">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT10S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;The OpenDoor command opens the drawer of the INHECO ODTC device where it can accept the next labware item. The physical opening drawer process is not interruptible or stoppable by any SiLA Command. When SiLA command Pause is invoked the SiLA SubState will change to state pauseRequested and remain until processing is finished and then change to state asynchPaused.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/OpenDoor" message="tns:InhecoSiLAServiceProvider_OpenDoor_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/OpenDoorResponse" message="tns:InhecoSiLAServiceProvider_OpenDoor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseDoor">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT10S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;The CloseDoor command closes the drawer of the INHECO ODTC device. The physical closing drawer process is not interruptible or stoppable by any SiLA Command. When SiLA command Pause is invoked the SiLA SubState will change to state pauseRequested and remain until processing is finished and then change to state asynchPaused.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/CloseDoor" message="tns:InhecoSiLAServiceProvider_CloseDoor_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/CloseDoorResponse" message="tns:InhecoSiLAServiceProvider_CloseDoor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteMethod">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT01M" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;The ExecuteMethod command is used to start a previously defined method with the device control software. A method is uniquely determined by its identifier methodName. A physical method process is not interruptible by the SiLA Mandatory Command Pause. When SiLA command Pause is invoked the SiLA SubState will change to state PauseRequested and remain until process is finished and then change to state AsynchPaused. Methods can be transferred to the ODTC device by using the SetParameters command, available methods can be looked up with the GetParameters command. For further details about methods see 5 Methods. &lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;&lt;/Parameter&gt;&lt;Parameter name="methodName" &gt;&lt;/Parameter&gt;&lt;Parameter name="priority" &gt;&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/ExecuteMethod" message="tns:InhecoSiLAServiceProvider_ExecuteMethod_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/ExecuteMethodResponse" message="tns:InhecoSiLAServiceProvider_ExecuteMethod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopMethod">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT01S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;The StopMethod command will stop a processing method. The command can be executed even if the command ExecuteMethod is not processing at the moment to stop temperature controlling of a post temper enabled Method process or a PreMethod.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/StopMethod" message="tns:InhecoSiLAServiceProvider_StopMethod_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/StopMethodResponse" message="tns:InhecoSiLAServiceProvider_StopMethod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrepareForInput">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT10S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;The PrepareForInput command closes the drawer of the INHECO ODTC device. The physical closing drawer process is not interruptible or stoppable by any SiLA Command. When SiLA command Pause is invoked the SiLA SubState will change to state pauseRequested and remain until processing is finished and then change to state asynchPaused.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;&lt;/Parameter&gt;&lt;Parameter name="position" &gt;&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/PrepareForInput" message="tns:InhecoSiLAServiceProvider_PrepareForInput_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/PrepareForInputResponse" message="tns:InhecoSiLAServiceProvider_PrepareForInput_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PrepareForOutput">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT10S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;The PrepareForOutput command opens the drawer of the INHECO ODTC device where it can accept the next labware item. The physical opening drawer process is not interruptible or stoppable by any SiLA Command. When SiLA command Pause is invoked the SiLA SubState will change to state pauseRequested and remain until processing is finished and then change to state asynchPaused.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;&lt;/Parameter&gt;&lt;Parameter name="position" &gt;&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/PrepareForOutput" message="tns:InhecoSiLAServiceProvider_PrepareForOutput_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/PrepareForOutputResponse" message="tns:InhecoSiLAServiceProvider_PrepareForOutput_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetConfiguration">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT05S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;The SetConfiguration command is used to set the configuration of a device. This command can only be executed in the SiLA state Standby.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;This parameter is the identification of the PMS, which has locked the device.&lt;/Parameter&gt;&lt;Parameter name="configLevel" minValue="1" maxValue="2147483647" &gt;Parameter configLevel is not used.&lt;/Parameter&gt;&lt;Parameter name="password" &gt;Parameter password is not used.&lt;/Parameter&gt;&lt;Parameter name="configXML" &gt;Parameter configXML contains configuration parameters formatted as XML. It has to be composed according to SiLA  ResponseType_1.2.xsd XML schema file. The possible XML root elements are ParameterSet for transmitting at least one or multiple configuration parameters or Value for a single parameter.&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0" &gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/SetConfiguration" message="tns:InhecoSiLAServiceProvider_SetConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/SetConfigurationResponse" message="tns:InhecoSiLAServiceProvider_SetConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT0S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;The GetConfiguration command is used to receive the configuration of a device. It can only be invoked in the standby state.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" &gt;This parameter is the unique identification of this command call.&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;This parameter is the identification of the PMS, which has locked the device.&lt;/Parameter&gt;&lt;Parameter name="configLevel" minValue="1" maxValue="2147483647" &gt;Parameter configLevel is not used.&lt;/Parameter&gt;&lt;Parameter name="password" &gt;Parameter password is not used.&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="1" &gt;&lt;Description&gt;The response contains configuration parameters formatted as XML. It is composed according to SiLA  ResponseType_1.2.xsd XML schema file. The XML root element is ResponseData. Followed by the element ParameterSet which contains the element Parameter for each configuration parameter.&lt;/Description&gt;&lt;Value name="configXML" type="String" /&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/GetConfiguration" message="tns:InhecoSiLAServiceProvider_GetConfiguration_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/GetConfigurationResponse" message="tns:InhecoSiLAServiceProvider_GetConfiguration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetParameters">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT0S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd"&gt;&lt;Summary&gt;The SetParameters command is used to set device specific parameters within the state idle so that the new values are used for the next command invocation. Only the parameters that need to be changed have to be transmitted to the device.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647"&gt;&lt;/Parameter&gt;&lt;Parameter name="lockId" &gt;&lt;/Parameter&gt;&lt;Parameter name="paramsXML"  xsi:type="xmlDocument"&gt;Parameter paramsXML contains configuration parameters formatted as XML. It has to be composed according to SiLA ? ResponseType_1.2.xsd XML schema file. The possible XML root elements are ParameterSet for transmitting at least one or multiple configuration parameters or Value for a single parameter.&lt;/Parameter&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="0"&gt;&lt;Description&gt;Empty response&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/SetParameters" message="tns:InhecoSiLAServiceProvider_SetParameters_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/SetParametersResponse" message="tns:InhecoSiLAServiceProvider_SetParameters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParameters">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT0S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;The GetParameters command is used to report actual parameter names and values to the PMS.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" /&gt;&lt;Parameter name="lockId" /&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="1" &gt;&lt;Description&gt;The response contains parameters formatted as XML. It is composed according to SiLA  ResponseType_1.2.xsd XML schema file. The XML root element is ResponseData. Followed by the element ParameterSet which contains the element Parameter for each configuration parameter.&lt;/Description&gt;&lt;Value name="paramsXML" type="String" /&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/GetParameters" message="tns:InhecoSiLAServiceProvider_GetParameters_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/GetParametersResponse" message="tns:InhecoSiLAServiceProvider_GetParameters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadActualTemperature">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="false" estimatedDuration="PT0S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd" &gt;&lt;Summary&gt;The ReadActualTemperature command is used to get temperature values of the available temperature sensors. This command can be executed while the device is in SiLA state Idle but also while in state Busy e.g. while executing the SiLA command ExecuteMethod.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" /&gt;&lt;Parameter name="lockId" /&gt;&lt;Response xsi:type="standardResponse" parameterSetCount="1" &gt;&lt;Description&gt;The response contains one single parameter formatted as XML. It is composed according to SiLA ? ResponseType_1.2.xsd XML schema file. The XML root element is ResponseData. Followed by the element Parameter. Timestamp and eight temperature values.&lt;/Description&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/ReadActualTemperature" message="tns:InhecoSiLAServiceProvider_ReadActualTemperature_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/ReadActualTemperatureResponse" message="tns:InhecoSiLAServiceProvider_ReadActualTemperature_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastData">
+      <wsdl:documentation>&lt;SiLACommandDescription isCommonCommand="true" estimatedDuration="PT0S" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sila-standard.org/schemata/SoapAnnotation_1.2.xsd"&gt;&lt;Summary&gt;The GetLastData command is used to get a temperature trace of the last executed PreMethod or Method.&lt;/Summary&gt;&lt;Parameter name="requestId" minValue="1" maxValue="2147483647" /&gt;&lt;Parameter name="lockId" /&gt;&lt;Response xsi:type="complexResponse"&gt;&lt;Description&gt;The response contains sensor data formatted as a CSV document. The response XML is formatted according to the SiLA Data Capture Specification  version 1.0 which is also known as a SiLA Complex Response data package.&lt;/Description&gt;&lt;TypeName&gt;Measurement&lt;/TypeName&gt;&lt;Version&gt;1.0&lt;/Version&gt;&lt;/Response&gt;&lt;/SiLACommandDescription&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://sila.coop/GetLastData" message="tns:InhecoSiLAServiceProvider_GetLastData_InputMessage" />
+      <wsdl:output wsaw:Action="http://sila.coop/GetLastDataResponse" message="tns:InhecoSiLAServiceProvider_GetLastData_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_InhecoSiLAServiceProvider" type="tns:InhecoSiLAServiceProvider">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Abort">
+      <soap:operation soapAction="http://sila.coop/Abort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoContinue">
+      <soap:operation soapAction="http://sila.coop/DoContinue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeviceIdentification">
+      <soap:operation soapAction="http://sila.coop/GetDeviceIdentification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <soap:operation soapAction="http://sila.coop/GetStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Initialize">
+      <soap:operation soapAction="http://sila.coop/Initialize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LockDevice">
+      <soap:operation soapAction="http://sila.coop/LockDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Pause">
+      <soap:operation soapAction="http://sila.coop/Pause" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reset">
+      <soap:operation soapAction="http://sila.coop/Reset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnlockDevice">
+      <soap:operation soapAction="http://sila.coop/UnlockDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenDoor">
+      <soap:operation soapAction="http://sila.coop/OpenDoor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseDoor">
+      <soap:operation soapAction="http://sila.coop/CloseDoor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteMethod">
+      <soap:operation soapAction="http://sila.coop/ExecuteMethod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopMethod">
+      <soap:operation soapAction="http://sila.coop/StopMethod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrepareForInput">
+      <soap:operation soapAction="http://sila.coop/PrepareForInput" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PrepareForOutput">
+      <soap:operation soapAction="http://sila.coop/PrepareForOutput" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetConfiguration">
+      <soap:operation soapAction="http://sila.coop/SetConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetConfiguration">
+      <soap:operation soapAction="http://sila.coop/GetConfiguration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetParameters">
+      <soap:operation soapAction="http://sila.coop/SetParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParameters">
+      <soap:operation soapAction="http://sila.coop/GetParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadActualTemperature">
+      <soap:operation soapAction="http://sila.coop/ReadActualTemperature" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastData">
+      <soap:operation soapAction="http://sila.coop/GetLastData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InhecoSiLAServiceProvider">
+    <wsdl:documentation>INHECO GmbH ODTC</wsdl:documentation>
+    <wsdl:port name="BasicHttpBinding_InhecoSiLAServiceProvider" binding="tns:BasicHttpBinding_InhecoSiLAServiceProvider">
+      <soap:address location="http://10.0.0.72:8080/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
