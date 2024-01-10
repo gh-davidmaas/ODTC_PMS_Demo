@@ -33,6 +33,9 @@
             this.tBLog = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panelParameters = new System.Windows.Forms.Panel();
+            this.cmdRunProgram = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMethodName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -90,7 +93,6 @@
             this.groupBox1.Size = new System.Drawing.Size(537, 82);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // groupBox2
             // 
@@ -147,13 +149,40 @@
             this.panelParameters.Name = "panelParameters";
             this.panelParameters.Size = new System.Drawing.Size(529, 193);
             this.panelParameters.TabIndex = 0;
-            this.panelParameters.Paint += new System.Windows.Forms.PaintEventHandler(this.panelParameters_Paint);
+            // 
+            // cmdRunProgram
+            // 
+            this.cmdRunProgram.Location = new System.Drawing.Point(607, 68);
+            this.cmdRunProgram.Name = "cmdRunProgram";
+            this.cmdRunProgram.Size = new System.Drawing.Size(145, 87);
+            this.cmdRunProgram.TabIndex = 9;
+            this.cmdRunProgram.Text = "Run Program";
+            this.cmdRunProgram.UseVisualStyleBackColor = true;
+            this.cmdRunProgram.Click += new System.EventHandler(this.cmdRunProgram_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(1017, 351);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(8, 26);
+            this.textBox1.TabIndex = 10;
+            // 
+            // txtMethodName
+            // 
+            this.txtMethodName.Location = new System.Drawing.Point(777, 98);
+            this.txtMethodName.Name = "txtMethodName";
+            this.txtMethodName.Size = new System.Drawing.Size(100, 26);
+            this.txtMethodName.TabIndex = 11;
+            this.txtMethodName.Text = "Test Warm Up";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(573, 978);
+            this.ClientSize = new System.Drawing.Size(1102, 978);
+            this.Controls.Add(this.txtMethodName);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cmdRunProgram);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.tBLog);
             this.Controls.Add(this.btInvoke);
@@ -162,7 +191,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "ODTC PMS Demo";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -184,6 +212,9 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox tBLog;
         private System.Windows.Forms.Panel panelParameters;
+        private System.Windows.Forms.Button cmdRunProgram;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMethodName;
     }
 }
 

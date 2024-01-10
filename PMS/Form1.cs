@@ -35,7 +35,7 @@ namespace PMS {
 
             // because the odtc service is built in by compile time, we know it's availbale commands
             // add all commands here
-            listBoxSiLACommands.Items.AddRange(new string[] { "Reset", "Initialize", "GetStatus", "OpenDoor", "CloseDoor" });
+            listBoxSiLACommands.Items.AddRange(new string[] { "Reset", "Initialize", "GetStatus", "OpenDoor", "CloseDoor","ListPrograms" });
             listBoxSiLACommands.SelectedIndexChanged += new EventHandler(listBoxSiLACommands_SelectedIndexChanged);
         }
 
@@ -85,6 +85,10 @@ namespace PMS {
                         CloseDoorControl cdP = panelParameters.Controls[0] as CloseDoorControl;
                         ExecuteCloseDoor(cdP.tBLockId.Text);
                         break;
+
+                    //Added by DM
+                    case "ListPrograms":
+
 
                     default:
                         break;
@@ -197,19 +201,19 @@ namespace PMS {
             }
         }
 
-        private void panelParameters_Paint(object sender, PaintEventArgs e)
+        private void cmdRunProgram_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            //temp code compied from ExcutCloseDoor to test understanding
+            string lockId="";
+            string methodName=txtMethodName.Text;
+            //int? priority;
+            Log("Invoke SiLA CloseDoor");
+            //ODTC.SiLAReturnValue rv = invoker.CloseDoor(requestId.Next(), lockId);
+            ODTC.SiLAReturnValue rv = invoker.ExecuteMethod(requestId.Next(), lockId,methodName,null,false);
+            if (rv.returnCode != 2)
+            {
+                MessageBox.Show("Unexpected ReturnCode: " + rv.returnCode + "\n" + "Message: " + rv.message);
+            }
         }
     }
 }
